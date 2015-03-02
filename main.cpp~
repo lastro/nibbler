@@ -14,6 +14,7 @@
 
 int	main(int argc, char **argv)
 {
+  std::cout << argc ;
   if (argc != 1 && argc != 3)
     {
       std::cout << "usage: snake [width] [height]" << std::endl;
@@ -23,10 +24,10 @@ int	main(int argc, char **argv)
     {
       std::cout << "the width is " << argv[1];
       std::cout << " and the height is :" << argv[2] << std::endl;
-      std::cout << "START LIB 1" << std::endl;
+      //go lib
     }
   else
     {
-      std::cout << "START LIB 1" << std::endl;
+      //go lib
     }
 }
