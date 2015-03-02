@@ -22,7 +22,7 @@ int	main(int argc, char **argv)
   else if (argc == 3)
     {
       std::cout << "the width is " << argv[1];
-      std::cout << " and the height is :" << argv[2] << std::endl;
+      std::cout << " and the height is " << argv[2] << std::endl;
       std::cout << "START LIB 1" << std::endl;
     }
   else
