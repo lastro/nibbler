@@ -6,13 +6,15 @@
 #    By: gmangin <gaelle.mangin@hotmail.fr>                                    #
 #                                                                              #
 #    Created: 2015/03/02 12:18:45 by gmangin                                   #
-#    Updated: 2015/03/02 12:20:56 by gmangin                                   #
+#    Updated: 2015/03/02 15:00:02 by tlepetit         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 NAME = snake
 
-SRC = main.cpp
+SRC_DIR = main
+
+SRC = $(SRC_DIR)/main.cpp
 
 FLAGS = -Wall -Werror -Wextra
 
