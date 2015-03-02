@@ -8,6 +8,9 @@ file(
 
 	source
 
+	QT/src/*
+	QT/includes/*
+
         Main/src/*
         Main/includes/*
 )
