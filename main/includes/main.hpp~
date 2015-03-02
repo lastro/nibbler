@@ -13,6 +13,6 @@
 #ifndef		MAIN_HPP
 # define	MAIN_HPP
 
-std::string     graph[3] = { "QT", "OpenGl", "Autre" };
+
 
 #endif		/* MAIN_HPP */

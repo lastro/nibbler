@@ -1,25 +1,18 @@
 cmake_minimum_required(VERSION 2.6)
 
-#Déclaration du projet
-
 project(MyProject)
 
 
-
 file(
-
         GLOB_RECURSE
 
 	source
 
-        src/*
-        includes/*
-
+        Main/src/*
+        Main/includes/*
 )
 
-add_executable(
-
-        snake
+add_executable(snake
 
         ${source}
 

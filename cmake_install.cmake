@@ -1,4 +1,4 @@
-# Install script for directory: /nfs/zfs-student-2/users/2013/gmangin/Nibbler/main
+# Install script for directory: /nfs/zfs-student-2/users/2013/gmangin/Nibbler
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -33,7 +33,7 @@ else()
   set(CMAKE_INSTALL_MANIFEST "install_manifest.txt")
 endif()
 
-file(WRITE "/nfs/zfs-student-2/users/2013/gmangin/Nibbler/main/${CMAKE_INSTALL_MANIFEST}" "")
+file(WRITE "/nfs/zfs-student-2/users/2013/gmangin/Nibbler/${CMAKE_INSTALL_MANIFEST}" "")
 foreach(file ${CMAKE_INSTALL_MANIFEST_FILES})
-  file(APPEND "/nfs/zfs-student-2/users/2013/gmangin/Nibbler/main/${CMAKE_INSTALL_MANIFEST}" "${file}\n")
+  file(APPEND "/nfs/zfs-student-2/users/2013/gmangin/Nibbler/${CMAKE_INSTALL_MANIFEST}" "${file}\n")
 endforeach()

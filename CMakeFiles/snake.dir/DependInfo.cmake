@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/nfs/zfs-student-2/users/2013/gmangin/Nibbler/main/src/main.cpp" "/nfs/zfs-student-2/users/2013/gmangin/Nibbler/main/CMakeFiles/snake.dir/src/main.cpp.o"
+  "/nfs/zfs-student-2/users/2013/gmangin/Nibbler/Main/src/main.cpp" "/nfs/zfs-student-2/users/2013/gmangin/Nibbler/CMakeFiles/snake.dir/Main/src/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "Clang")
 

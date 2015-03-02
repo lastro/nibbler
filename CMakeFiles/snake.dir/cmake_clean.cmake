@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/snake.dir/src/main.cpp.o"
+  "CMakeFiles/snake.dir/Main/src/main.cpp.o"
   "snake.pdb"
   "snake"
 )

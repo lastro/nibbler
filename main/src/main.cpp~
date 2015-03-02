@@ -28,6 +28,6 @@ int	main(int argc, char **argv)
     }
   else
     {
-      std::cout << "START LIB 1 : " << graph[0]  << std::endl;
+      std::cout << "START LIB 1" << std::endl;
     }
 }
