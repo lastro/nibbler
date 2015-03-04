@@ -6,7 +6,7 @@
 //   By: gmangin <gaelle.mangin@hotmail.fr>                                   //
 //                                                                            //
 //   Created: 2015/03/02 12:39:27 by gmangin                                  //
-//   Updated: 2015/03/03 17:09:51 by gmangin                                  //
+//   Updated: 2015/03/04 11:40:32 by gmangin          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -50,7 +50,7 @@ int	main(int argc, char **argv)
 	if (check_arg(argc, argv))
 		return (1);
 	
-	hand = dlopen("../../lib.so", RTLD_NOW);
+	hand = dlopen("./lib.so", RTLD_NOW);
 	if (hand == NULL)
 	{
 		std::cout << dlerror() << std::endl;
