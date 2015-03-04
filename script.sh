@@ -5,5 +5,5 @@ echo "  - g++ -shared -o lib.so lib.o window.o"
 g++ -shared -o lib.so lib.o window.o
 
 echo "2. Compilation du programme"
-echo "  - g++ main/src/main.cpp main/src/Element.cpp"
-g++ main/src/main.cpp main/src/Element.cpp
+echo "  - g++ main/src/main.cpp main/src/Element.cpp main/src/Lib.cpp"
+g++ main/src/main.cpp main/src/Element.cpp main/src/Lib.cpp

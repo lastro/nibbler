@@ -6,14 +6,17 @@
 //   By: gmangin <gaelle.mangin@hotmail.fr>                                   //
 //                                                                            //
 //   Created: 2015/03/02 12:39:27 by gmangin                                  //
-//   Updated: 2015/03/04 21:02:38 by gmangin          ###   ########.fr       //
+//   Updated: 2015/03/04 21:11:56 by gmangin          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
-#include	"../includes/header.hpp"
+#include   "../includes/Element.hpp"
+#include   "../includes/Lib.hpp"
 #include	<cstdlib>
 #include	<signal.h>
-#include	<dlfcn.h>
+#include	<iostream>
+
+std::string     graph[3] = { "QT", "OpenGl", "Autre" };
 
 // function qui check les options mis en argument
 void	check_arg(int argc, char **argv, Lib *lib, Element *game)
@@ -46,38 +49,27 @@ void	check_arg(int argc, char **argv, Lib *lib, Element *game)
 	}
 }
 
-// function generique pour les open dl (lib static)
-void *	error_dl(const char * lib)
-{
-    void    *hand;
-
-	hand = dlopen(lib, RTLD_NOW);
-	if (hand == NULL)
-		throw std::string(dlerror());
-   return hand;
-}
-
-void	play(std::vector< std::vector <int > > &map, Element *game)
+void	play(std::vector< std::vector <int > > &map, Element *game, Lib *lib)
 {
 	while (1)
 	{
 		if (!(game->get_life()))
         {
-            game->gameOver();
-            return (0);
+            lib->gameOver();
+            return;
         }
 	}
 }
 
 // le jeu est lance, on place les pions et on les affiches dans les diff lib.
-void    start_game(Element *game)
+void    start_game(Element *game, Lib *lib)
 {
 	std::vector< std::vector <int > > map;
 
     game->init_map(map);
     game->init_snake(map);
 	game->display(map);
-	play(map, game);
+	play(map, game, lib);
 }
 
 int		main(int argc, char **argv)
@@ -92,7 +84,7 @@ int		main(int argc, char **argv)
 	try
 	{
 		check_arg(argc, argv, lib, game);
-		start_game(game);
+		start_game(game, lib);
 	}
 	catch(std::string const& chaine)
 	{
