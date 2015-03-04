@@ -6,7 +6,7 @@
 //   By: gmangin <gmangin@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/03/04 13:45:04 by gmangin           #+#    #+#             //
-//   Updated: 2015/03/04 21:11:57 by gmangin          ###   ########.fr       //
+//   Updated: 2015/03/04 21:56:59 by gmangin          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -67,4 +67,9 @@ void    Lib::window(int argc, char **argv)
    else
 	   f(0, 0);
    dlclose(hand);
+}
+
+void	Lib::move(std::vector< std::vector <int > > &map)
+{
+// faire bouger snake sur la map en fonction des lib ^^
 }

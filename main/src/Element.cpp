@@ -6,7 +6,7 @@
 //   By: gmangin <gmangin@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/03/04 13:45:04 by gmangin           #+#    #+#             //
-//   Updated: 2015/03/04 21:13:01 by gmangin          ###   ########.fr       //
+//   Updated: 2015/03/04 22:00:53 by gmangin          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -69,6 +69,7 @@ void		Element::set_life(int life)
 
 void		Element::display(std::vector< std::vector <int > > &map)
 {
+	std::cout << std::endl << "THE MAP with a random Snake 2 (HEAD) 3 (QUEUE): " << std::endl;
     for (int i = 0; i < this->_y; ++i)
     {
 		for (int j = 0; j < this->_x; j++)
@@ -89,7 +90,6 @@ void		Element::init_snake(std::vector< std::vector <int > > &map)
     // je place la tete de maniere random
     i = std::rand() % (this->_y - 4) + 1;
     j = std::rand() % (this->_x - 2) + 1;
-	std::cout << i << " " << j << std::endl;
     map[i][j] = 1;
     // puis je place la queue derriere :)
     map[i - 1][j] = 2;
