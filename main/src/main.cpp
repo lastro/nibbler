@@ -6,11 +6,10 @@
 //   By: gmangin <gaelle.mangin@hotmail.fr>                                   //
 //                                                                            //
 //   Created: 2015/03/02 12:39:27 by gmangin                                  //
-//   Updated: 2015/03/04 16:15:33 by gmangin          ###   ########.fr       //
+//   Updated: 2015/03/04 19:10:31 by gmangin          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
-#include	<iostream>
 #include	"../includes/main.hpp"
 #include	<cstdlib>
 #include	<signal.h>
@@ -43,22 +42,6 @@ int	check_arg(int argc, char **argv)
 	return (0);
 }
 
-void	set_window(int argc, char **argv)
-{
-    void    *hand;
-    void    (*f)(int, char **);
-
-    if (argc == 3)
-    {
-        window.set_width(std::atoi(argv[1]));
-        window.set_height(std::atoi(argv[2]));
-    }
-		hand = error_dl("./lb.so");
-	}
-	f = reinterpret_cast<void (*)(int, char **)>(dlsym(hand, "start_game"));
-	f(argc, argv);
-	dlclose(hand);
-}
 // function generique pour les open dl (lib static)
 void *	error_dl(const char * lib)
 {
@@ -70,13 +53,40 @@ void *	error_dl(const char * lib)
    return hand;
 }
 
+void    set_window(int argc, char **argv, Element *game)
+{
+    void    *hand;
+    void    (*f)(int, int);
+
+   try
+   {
+	   hand = error_dl("./lib.so");
+   }
+   catch(std::string const& chaine)
+   {
+	   throw std::string(chaine);
+   }
+   f = reinterpret_cast<void (*)(int, int)>(dlsym(hand, "window_size"));
+   if (argc == 3)
+   {
+	   game->set_x(std::atoi(argv[1]));
+	   game->set_y(std::atoi(argv[2]));
+   }
+   f(game->get_x(), game->get_y());
+   dlclose(hand);
+}
+
 int		main(int argc, char **argv)
 {
+    Element *game;
+
+    game = new Element();
+
 	if (check_arg(argc, argv))
 		return (1);
 	try
 	{
-		set_window(argc, argv);
+        set_window(argc, argv, game);
 	}
 	catch(std::string const& chaine)
 	{

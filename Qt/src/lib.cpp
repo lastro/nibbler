@@ -6,7 +6,7 @@
 //   By: gmangin <gaelle.mangin@hotmail.fr>                                   //
 //                                                                            //
 //   Created: 2015/03/03 16:52:42 by gmangin                                  //
-//   Updated: 2015/03/04 16:12:35 by gmangin          ###   ########.fr       //
+//   Updated: 2015/03/04 17:16:58 by gmangin          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -14,7 +14,7 @@
 #include <cstdlib>
 #include "../includes/window.hpp"
 
-extern "C" void	start_game(int width, int height)
+extern "C" void	window_size(int width, int height)
 {
 	Window    window;
 
