@@ -1,38 +1,58 @@
 // ************************************************************************** //
 //                                                                            //
 //                                                        :::      ::::::::   //
-//   Food.cpp                                           :+:      :+:    :+:   //
+//   Lib.cpp                                        :+:      :+:    :+:   //
 //                                                    +:+ +:+         +:+     //
 //   By: gmangin <gmangin@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/03/04 13:45:04 by gmangin           #+#    #+#             //
-//   Updated: 2015/03/04 13:56:55 by gmangin          ###   ########.fr       //
+//   Updated: 2015/03/04 20:53:38 by gmangin          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
-#include	"../includes/Food.hpp"
-#include	<iostream>
+#include	"../includes/Lib.hpp"
 
-Food::Food(void)
+Lib::Lib(void)
 {
 }
 
-Food::~Food(void)
+Lib::~Lib(void)
 {
 }
 
-Food::Food(Food const & src)
+Lib::Lib(Lib const & src)
 {
 	*this = src;
 }
 
-Food &	Food::operator=(Food const & rhs)
+Lib &	Lib::operator=(Lib const & rhs)
 {
 	return *this;
 }
 
-void		Food::display(void)
+void	Lib::GameOver(void)
 {
-	std::cout << "future display of the food" << std::endl;
+	std::cout << "!!! PERDU !!! " << std::endl;
 }
 
+
+void    window(int argc, char **argv)
+{
+    void    *hand;
+    void    (*f)(int, int);
+
+   try
+   {
+       hand = error_dl("./lib.so");
+   }
+   catch(std::string const& chaine)
+   {
+       throw std::string(chaine);
+   }
+   f = reinterpret_cast<void (*)(int, int)>(dlsym(hand, "window_size"));
+   if (argc == 3)
+	   f(std::atoi(argv[1]), std::atoi(argv[2]));
+   else
+	   f(0, 0);
+   dlclose(hand);
+}
