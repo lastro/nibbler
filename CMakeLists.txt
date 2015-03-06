@@ -6,20 +6,47 @@ add_definitions( "-Wall -Werror -Wextra" )
 set(Qt_USE_STATIC_LIBS OFF)
 set(OpenGL_USE_STATIC_LIBS OFF)
 
+
+find_package(OpenGL REQUIRED)
+
 file(
 
         GLOB_RECURSE
 
-		source
+		sources
 
 		Qt/src/*
-		Qt/includes/*
         main/src/*
+)
+
+file(
+
+        GLOB_RECURSE
+
+		headers
+
+		Qt/includes/*
         main/includes/*
 )
 
-add_executable(nibbler ${source})
-find_package(OpenGL REQUIRED)
-include_directories( ${OPENGL_INCLUDE_DIRS}  ${GLUT_INCLUDE_DIRS} ${SDL2_LIBRARYDIR})
+add_executable(
 
-target_link_libraries(testas ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} ${SDL2_INCLUDEDIR})
+		nibbler
+
+		${sources}
+		${headers}
+)
+
+
+include_directories(
+		${OPENGL_INCLUDE_DIRS}
+		${GLUT_INCLUDE_DIRS}
+		${SDL2_LIBRARYDIR}
+)
+
+target_link_libraries(
+		nibbler
+		${OPENGL_LIBRARIES}
+		${GLUT_LIBRARY}
+		${SDL2_INCLUDEDIR}
+)
