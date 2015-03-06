@@ -2,3 +2,8 @@
 *.o
 *.gch
 *.so
+CMakeCache.txt
+Makefile
+CMakeFiles
+cmake_install.cmake
+nibbler
