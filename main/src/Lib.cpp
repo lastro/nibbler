@@ -29,6 +29,7 @@ Lib::Lib(Lib const & src)
 
 Lib &	Lib::operator=(Lib const & rhs)
 {
+  (void)rhs;
 	return *this;
 }
 
@@ -71,5 +72,6 @@ void    Lib::window(int argc, char **argv)
 
 void	Lib::move(std::vector< std::vector <int > > &map)
 {
+  (void)map;
 // faire bouger snake sur la map en fonction des lib ^^
 }

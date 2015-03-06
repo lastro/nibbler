@@ -1,6 +1,6 @@
 
 echo "Brew Update";
-brew update;
+#brew update;
 echo "Done";
 
 echo "brew install SDL2";

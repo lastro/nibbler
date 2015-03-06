@@ -33,9 +33,9 @@ public:
 	void		display(std::vector< std::vector <int > > &map);
 	void		init_snake(std::vector< std::vector <int > > &map);
 	void		init_map(std::vector< std::vector <int > > &map);
-	int			get_x(void);
-	int			get_y(void);
-	int         get_life(void);
+	int			get_x(void) const;
+	int			get_y(void) const;
+	int         get_life(void) const;
 	void		set_x(int x);
 	void		set_y(int y);
 	void		set_life(int life);

@@ -34,10 +34,13 @@ Element::Element(Element const & src)
 
 Element &	Element::operator=(Element const & rhs)
 {
+	this->_x = rhs.get_x();
+	this->_y = rhs.get_y();
+	this->_life = rhs.get_life();
 	return *this;
 }
 
-int			Element::get_x(void)
+int			Element::get_x(void) const
 {
 	return this->_x;
 }
@@ -47,7 +50,7 @@ void		Element::set_x(int x)
 	this->_x = x;
 }
 
-int			Element::get_y(void)
+int			Element::get_y(void) const
 {
 	return this->_y;
 }
@@ -57,7 +60,7 @@ void		Element::set_y(int y)
 	this->_y = y;
 }
 
-int			Element::get_life(void)
+int			Element::get_life(void) const
 {
 	return this->_life;
 }

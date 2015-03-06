@@ -6,7 +6,7 @@
 //   By: gmangin <gaelle.mangin@hotmail.fr>                                   //
 //                                                                            //
 //   Created: 2015/03/02 12:39:27 by gmangin                                  //
-//   Updated: 2015/03/04 21:58:34 by gmangin          ###   ########.fr       //
+//   Updated: 2015/03/06 16:39:02 by amusic           ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -50,8 +50,6 @@ void	check_arg(int argc, char **argv, Lib *lib, Element *game)
 
 void	play(std::vector< std::vector <int > > &map, Element *game, Lib *lib)
 {
-	int		input;
-
 	// a ameliorer quand on controlera bien QT, OpenGl et le 3e !
 	// on pourra mettre en place le temps ... :)
 	std::cout << "Rules : " << std::endl;
