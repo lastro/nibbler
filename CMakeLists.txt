@@ -2,6 +2,10 @@ cmake_minimum_required(VERSION 2.8)
 
 project(nibbler)
 
+add_definitions( "-Wall -Werror -Wextra" )
+set(Qt_USE_STATIC_LIBS OFF)
+set(OpenGL_USE_STATIC_LIBS OFF)
+
 file(
 
         GLOB_RECURSE
