@@ -6,7 +6,7 @@
 //   By: tlepetit <tlepetit@student.42.fr>          +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/03/07 16:23:11 by tlepetit          #+#    #+#             //
-//   Updated: 2015/03/07 17:59:23 by tlepetit         ###   ########.fr       //
+//   Updated: 2015/03/07 18:18:57 by rnicolas         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -33,6 +33,7 @@ public:
 	std::array<int, 2>		getFood(void) const;
 	void	setDir(dir & dir);
 	void	createFood(void);
+	int		update(void);
 
 private:
 	int		_x;
