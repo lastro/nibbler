@@ -6,7 +6,7 @@
 //   By: tlepetit <tlepetit@student.42.fr>          +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/03/07 16:23:11 by tlepetit          #+#    #+#             //
-//   Updated: 2015/03/07 17:12:29 by tlepetit         ###   ########.fr       //
+//   Updated: 2015/03/07 17:59:23 by tlepetit         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -16,6 +16,7 @@
 # include <list>
 # include <vector>
 # include <array>
+# include <stdlib.h>
 
 class	GameState
 {
@@ -31,6 +32,7 @@ public:
 	std::vector<std::vector<int> >		getGrid(void) const;
 	std::array<int, 2>		getFood(void) const;
 	void	setDir(dir & dir);
+	void	createFood(void);
 
 private:
 	int		_x;

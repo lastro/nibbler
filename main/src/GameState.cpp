@@ -6,7 +6,7 @@
 //   By: tlepetit <tlepetit@student.42.fr>          +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/03/07 16:22:30 by tlepetit          #+#    #+#             //
-//   Updated: 2015/03/07 17:35:23 by tlepetit         ###   ########.fr       //
+//   Updated: 2015/03/07 17:59:58 by tlepetit         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -32,6 +32,8 @@ GameState::GameState(void): _x(50), _y(50), _dir(UP)
 	it++;
 	(*it)[0] = 25;
 	(*it)[1] = 28;
+	this->_food = std::array<int, 2>();
+	this->createFood();
 }
 
 
@@ -55,6 +57,8 @@ GameState::GameState(int x, int y): _x(x), _y(y), _dir(UP)
 	it++;
 	(*it)[0] = x/2;
 	(*it)[1] = y/2 + 3;
+	this->_food = std::array<int, 2>();
+	this->createFood();
 }
 
 GameState::~GameState(void)
@@ -99,4 +103,36 @@ std::array<int, 2>		GameState::getFood(void) const
 void				GameState::setDir(dir & dir)
 {
 	this->_dir = dir;
+}
+
+void				GameState::createFood(void)
+{
+	int		size = this->_x * this->_y - this->_snake.size();
+	int		pos = rand() % size;
+	int		n = 0;
+	int		i = 0;
+	int		j = 0;
+
+	while (this->_grid[i][j] == 0)
+	{
+		i++;
+		if (i >= this->_x)
+		{
+			i = 0;
+			j++;
+		}
+	}
+	while (n < pos)
+	{
+		i++;
+		if (i >= this->_x)
+		{
+			i = 0;
+			j++;
+		}
+		if (this->_grid[i][j] == 0)
+			n++;
+	}
+	this->_food[0] = i;
+	this->_food[1] = j;
 }
