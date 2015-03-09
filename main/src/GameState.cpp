@@ -6,11 +6,12 @@
 //   By: tlepetit <tlepetit@student.42.fr>          +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/03/07 16:22:30 by tlepetit          #+#    #+#             //
-//   Updated: 2015/03/07 18:20:49 by rnicolas         ###   ########.fr       //
+//   Updated: 2015/03/09 16:40:02 by gmangin          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
-#include "GameState.hpp"
+#include	"../includes/GameState.hpp"
+#include	<iostream>
 
 GameState::GameState(void): _x(50), _y(50), _dir(UP)
 {
@@ -161,4 +162,17 @@ int					GameState::update(void)
 		this->createFood();
 	}
 	return(0);
+}
+
+void        GameState::display(void)
+{
+	std::cout << std::endl << "DISPLAY: " << std::endl;
+    for (int i = 0; i < this->_y; ++i)
+    {
+        for (int j = 0; j < this->_x; j++)
+        {
+			std::cout << this->_grid[i][j] << " ";
+        }
+		std::cout << std::endl;
+    }
 }

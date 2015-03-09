@@ -6,7 +6,7 @@
 //   By: gmangin <gmangin@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/03/04 13:45:04 by gmangin           #+#    #+#             //
-//   Updated: 2015/03/04 21:56:59 by gmangin          ###   ########.fr       //
+//   Updated: 2015/03/09 16:37:44 by gmangin          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -14,12 +14,16 @@
 #include    <dlfcn.h>
 #include    <iostream>
 
-Lib::Lib(void)
+const char      graph[3][20] = { "ncurses.so", "opengl.so", "autre.so" };
+
+Lib::Lib(void) : _current(0)
 {
+	std::cout << "START LIB : " << graph[this->_current]  << std::endl;
 }
 
 Lib::~Lib(void)
 {
+	std::cout << "END LIB : " << graph[this->_current]  << std::endl;
 }
 
 Lib::Lib(Lib const & src)
@@ -46,32 +50,35 @@ void *  error_dl(const char * lib)
 
 void	Lib::gameOver(void)
 {
-	std::cout << "!!! PERDU !!! " << std::endl;
 }
 
-void    Lib::window(int argc, char **argv)
+void    Lib::window(std::vector<std::vector<int> > grid, int x, int y)
 {
     void    *hand;
-    void    (*f)(int, int);
+    void    (*f)(std::vector<std::vector<int> >, int, int);
 
    try
    {
-       hand = error_dl("./lib.so");
+       hand = error_dl(graph[this->_current]);
    }
    catch(std::string const& chaine)
    {
        throw std::string(chaine);
    }
-   f = reinterpret_cast<void (*)(int, int)>(dlsym(hand, "window_size"));
-   if (argc == 3)
-	   f(std::atoi(argv[1]), std::atoi(argv[2]));
-   else
-	   f(0, 0);
+
+   f = reinterpret_cast<void (*)(std::vector<std::vector<int> >, int, int)>(dlsym(hand, "display"));
+   f(grid, y, x);
    dlclose(hand);
 }
 
-void	Lib::move(std::vector< std::vector <int > > &map)
+void	Lib::chooseLib(int i)
 {
-  (void)map;
-// faire bouger snake sur la map en fonction des lib ^^
+	std::cout << "CHANGE LIB from " << graph[this->_current];
+	this->_current = i;
+	std::cout << " to : " << graph[this->_current]  << std::endl;
+}
+
+void	Lib::getInput(void)
+{
+//recup 
 }

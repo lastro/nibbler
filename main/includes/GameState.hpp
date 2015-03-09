@@ -6,7 +6,7 @@
 //   By: tlepetit <tlepetit@student.42.fr>          +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/03/07 16:23:11 by tlepetit          #+#    #+#             //
-//   Updated: 2015/03/07 18:18:57 by rnicolas         ###   ########.fr       //
+//   Updated: 2015/03/09 16:03:18 by gmangin          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -34,6 +34,7 @@ public:
 	void	setDir(dir & dir);
 	void	createFood(void);
 	int		update(void);
+	void	display(void);
 
 private:
 	int		_x;
