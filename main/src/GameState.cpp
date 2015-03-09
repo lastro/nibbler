@@ -6,7 +6,7 @@
 //   By: tlepetit <tlepetit@student.42.fr>          +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/03/07 16:22:30 by tlepetit          #+#    #+#             //
-//   Updated: 2015/03/09 16:40:02 by gmangin          ###   ########.fr       //
+//   Updated: 2015/03/09 17:19:07 by tlepetit         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -16,10 +16,10 @@
 GameState::GameState(void): _x(50), _y(50), _dir(UP)
 {
 	this->_grid = std::vector<std::vector<int> >(50, std::vector<int>(50, 0));
+	this->_grid[25][23] = 2;
+	this->_grid[25][24] = 1;
 	this->_grid[25][25] = 1;
 	this->_grid[25][26] = 1;
-	this->_grid[25][27] = 1;
-	this->_grid[25][28] = 1;
 	this->_snake = std::list<std::array<int, 2> >(4, std::array<int, 2>());
 	std::list<std::array<int, 2> >::iterator it = this->_snake.begin();
 	(*it)[0] = 25;
@@ -41,10 +41,10 @@ GameState::GameState(void): _x(50), _y(50), _dir(UP)
 GameState::GameState(int x, int y): _x(x), _y(y), _dir(UP)
 {
 	this->_grid = std::vector<std::vector<int> >(x, std::vector<int>(y, 0));
+	this->_grid[x/2][y/2 - 2] = 2;
+	this->_grid[x/2][y/2 - 1] = 1;
 	this->_grid[x/2][y/2] = 1;
 	this->_grid[x/2][y/2 + 1] = 1;
-	this->_grid[x/2][y/2 + 2] = 1;
-	this->_grid[x/2][y/2 + 3] = 1;
 	this->_snake = std::list<std::array<int, 2> >(4, std::array<int, 2>());
 	std::list<std::array<int, 2> >::iterator it = this->_snake.begin();
 	(*it)[0] = x/2;
@@ -136,6 +136,7 @@ void				GameState::createFood(void)
 	}
 	this->_food[0] = i;
 	this->_food[1] = j;
+	this->_grid[i][j] = 3;
 }
 
 int					GameState::update(void)
@@ -150,11 +151,16 @@ int					GameState::update(void)
 		next[1]++;
 	if (this->_dir == LEFT)
 		next[0]--;
-	if (next[0] < 0 || next[0] >= this->_x || next[1] < 0 || next[1] >= this->_y || this->_grid[next[0]][next[1]])
+	if (next[0] < 0 || next[0] >= this->_x || next[1] < 0 || next[1] >= this->_y || this->_grid[next[0]][next[1]] == 1 || next[1] >= this->_y || this->_grid[next[0]][next[1]] == 2)
 		return (1);
+	this->_grid[this->_snake.front()[0]][this->_snake.front()[1]] = 1;
 	this->_snake.push_front(next);
+	this->_grid[this->_snake.front()[0]][this->_snake.front()[1]] = 2;
 	if (next[0] != this->_food[0] || next[1] != this->_food[1])
+	{
+		this->_grid[this->_snake.back()[0]][this->_snake.back()[1]] = 2;
 		this->_snake.pop_back();
+	}
 	else
 	{
 		if (this->_snake.size() == static_cast<unsigned long>(this->_x * this->_y))
@@ -171,8 +177,9 @@ void        GameState::display(void)
     {
         for (int j = 0; j < this->_x; j++)
         {
-			std::cout << this->_grid[i][j] << " ";
+			std::cout << this->_grid[j][i] << " ";
         }
 		std::cout << std::endl;
     }
+	std::cout << "tlp:" << this->_x << " " << this->_y << std::endl;
 }

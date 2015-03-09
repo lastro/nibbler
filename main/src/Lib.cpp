@@ -6,7 +6,7 @@
 //   By: gmangin <gmangin@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/03/04 13:45:04 by gmangin           #+#    #+#             //
-//   Updated: 2015/03/09 16:37:44 by gmangin          ###   ########.fr       //
+//   Updated: 2015/03/09 17:11:43 by tlepetit         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -67,7 +67,7 @@ void    Lib::window(std::vector<std::vector<int> > grid, int x, int y)
    }
 
    f = reinterpret_cast<void (*)(std::vector<std::vector<int> >, int, int)>(dlsym(hand, "display"));
-   f(grid, y, x);
+   f(grid, x, y);
    dlclose(hand);
 }
 
