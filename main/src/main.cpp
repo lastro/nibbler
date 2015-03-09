@@ -6,7 +6,7 @@
 //   By: gmangin <gaelle.mangin@hotmail.fr>                                   //
 //                                                                            //
 //   Created: 2015/03/02 12:39:27 by gmangin                                  //
-//   Updated: 2015/03/09 16:36:03 by gmangin          ###   ########.fr       //
+//   Updated: 2015/03/09 16:49:51 by tlepetit         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -30,10 +30,13 @@ void	check_arg(int argc, char **argv, GameState **game)
             else
 				throw std::string("usage: the minimum of the width and the height is 5 ");
 		}
+		std::cout << "test" << std::endl;
 		*game = new GameState(std::atoi(argv[1]), std::atoi(argv[2]));
 		std::cout << "the width is " << (*game)->getX();
 		std::cout << " and the height is " << (*game)->getX() << std::endl;
 	}
+	else
+		*game = new GameState(10, 10);
 }
 
 void	play(GameState *game, Lib *lib)
