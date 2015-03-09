@@ -6,7 +6,7 @@
 //   By: gmangin <gaelle.mangin@hotmail.fr>                                   //
 //                                                                            //
 //   Created: 2015/03/02 12:39:27 by gmangin                                  //
-//   Updated: 2015/03/09 16:49:51 by tlepetit         ###   ########.fr       //
+//   Updated: 2015/03/09 16:59:45 by gmangin          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -23,12 +23,12 @@ void	check_arg(int argc, char **argv, GameState **game)
 		throw std::string("usage: snake [width] [height]");
 	else if (argc == 3)
     {
-        if (std::atoi(argv[1]) < 5 || std::atoi(argv[2]) < 5)
+        if (std::atoi(argv[1]) < 10 || std::atoi(argv[2]) < 10)
 		{
             if (std::atoi(argv[1]) == 0 || std::atoi(argv[2]) == 0)
 				throw std::string("usage: snake [width] [height]");
             else
-				throw std::string("usage: the minimum of the width and the height is 5 ");
+				throw std::string("usage: the minimum of the width and the height is 10 ");
 		}
 		std::cout << "test" << std::endl;
 		*game = new GameState(std::atoi(argv[1]), std::atoi(argv[2]));
