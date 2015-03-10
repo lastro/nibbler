@@ -6,7 +6,7 @@
 //   By: tlepetit <tlepetit@student.42.fr>          +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/03/07 16:22:30 by tlepetit          #+#    #+#             //
-//   Updated: 2015/03/10 17:37:22 by tlepetit         ###   ########.fr       //
+//   Updated: 2015/03/10 18:02:18 by tlepetit         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -158,7 +158,7 @@ int					GameState::update(void)
 	this->_grid[this->_snake.front()[0]][this->_snake.front()[1]] = 2;
 	if (next[0] != this->_food[0] || next[1] != this->_food[1])
 	{
-		this->_grid[this->_snake.back()[0]][this->_snake.back()[1]] = 2;
+		this->_grid[this->_snake.back()[0]][this->_snake.back()[1]] = 0;
 		this->_snake.pop_back();
 	}
 	else

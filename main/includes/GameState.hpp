@@ -6,7 +6,7 @@
 //   By: tlepetit <tlepetit@student.42.fr>          +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/03/07 16:23:11 by tlepetit          #+#    #+#             //
-//   Updated: 2015/03/09 16:03:18 by gmangin          ###   ########.fr       //
+//   Updated: 2015/03/10 19:25:01 by tlepetit         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -17,6 +17,14 @@
 # include <vector>
 # include <array>
 # include <stdlib.h>
+# define KUP	0b0
+# define KRIGHT	0b1
+# define KDOWN	0b10
+# define KLEFT	0b11
+# define KF1	0b0100
+# define KF2	0b1000
+# define KF3	0b1100
+# define QUIT	0b10000
 
 class	GameState
 {
