@@ -19,9 +19,10 @@ echo "SDL2_LIBRARYDIR:FILEPATH="$HOME"/.brew/Cellar/sdl2/2.0.3/lib" >> CMakeCach
 echo "SDL2_ROOT:FILEPATH="$HOME"/.brew/Cellar/sdl2" >> CMakeCache.txt;
 
 echo "Make Qt Lib"
-cd Qt;
-make;
-cd ..;
+make -C Qt;
+
+echo "Make Ncurses Lib"
+make -C Ncurses;
 
 echo "make project"
 make;
