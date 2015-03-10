@@ -6,7 +6,7 @@
 //   By: gmangin <gaelle.mangin@hotmail.fr>                                   //
 //                                                                            //
 //   Created: 2015/03/03 16:52:42 by gmangin                                  //
-//   Updated: 2015/03/09 16:33:12 by gmangin          ###   ########.fr       //
+//   Updated: 2015/03/10 02:58:30 by gmangin                                  //
 //                                                                            //
 // ************************************************************************** //
 
@@ -15,15 +15,16 @@
 #include "../includes/window.hpp"
 #include	<vector>
 
-extern "C" void	display(std::vector<std::vector<int> > grid, int width, int height)
+extern "C" void	display(std::vector<std::vector<int> > grid, int x, int y)
 {
-	Window    window;
+	std::cout << "START window_size" << std::endl;
 
-	std::cout << "window_size" << std::endl;
-	window.set_width(width);
-	window.set_height(height);
-//	window.display();
+	Window    window(grid, x, y);
 
-	std::cout << "the width registered is " << window.get_width();
-	std::cout << " and the height registered is " << window.get_height() << std::endl;
+	window.test();
+	window.display();
+
+	std::cout << "the x registered is " << window.getX();
+	std::cout << " and the y registered is " << window.getY() << std::endl;
+	std::cout << "END window_size" << std::endl;
 }

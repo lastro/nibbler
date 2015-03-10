@@ -6,7 +6,7 @@
 //   By: gmangin <gmangin@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/03/04 13:45:04 by gmangin           #+#    #+#             //
-//   Updated: 2015/03/09 17:11:43 by tlepetit         ###   ########.fr       //
+//   Updated: 2015/03/10 02:40:44 by gmangin                                  //
 //                                                                            //
 // ************************************************************************** //
 
@@ -14,7 +14,7 @@
 #include    <dlfcn.h>
 #include    <iostream>
 
-const char      graph[3][20] = { "ncurses.so", "opengl.so", "autre.so" };
+const char      graph[3][20] = { "./ncurses.so", "./opengl.so", "./autre.so" };
 
 Lib::Lib(void) : _current(0)
 {
