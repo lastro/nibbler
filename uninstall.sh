@@ -1,4 +1,4 @@
 make clean;
 make fclean -C Qt;
 make fclean -C Ncurses;
-rm -rf CMakeFiles CMakeCache.txt cmake_install.cmake Makefile;
+rm -rf CMakeFiles CMakeCache.txt cmake_install.cmake Makefile ./main/includes/*.cxx* ./Qt/includes/*.cxx*;
