@@ -6,7 +6,7 @@
 //   By: tlepetit <tlepetit@student.42.fr>          +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/03/07 16:23:11 by tlepetit          #+#    #+#             //
-//   Updated: 2015/03/09 16:03:18 by gmangin          ###   ########.fr       //
+//   Updated: 2015/03/10 18:04:35 by rnicolas         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -31,7 +31,7 @@ public:
 	int		getY(void) const;
 	std::vector<std::vector<int> >		getGrid(void) const;
 	std::array<int, 2>		getFood(void) const;
-	void	setDir(dir & dir);
+	void	setDir(dir dir);
 	void	createFood(void);
 	int		update(void);
 	void	display(void);

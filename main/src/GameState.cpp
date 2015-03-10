@@ -6,7 +6,7 @@
 //   By: tlepetit <tlepetit@student.42.fr>          +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/03/07 16:22:30 by tlepetit          #+#    #+#             //
-//   Updated: 2015/03/10 17:37:22 by tlepetit         ###   ########.fr       //
+//   Updated: 2015/03/10 18:04:09 by rnicolas         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -101,7 +101,7 @@ std::array<int, 2>		GameState::getFood(void) const
 	return (this->_food);
 }
 
-void				GameState::setDir(dir & dir)
+void				GameState::setDir(dir dir)
 {
 	this->_dir = dir;
 }
@@ -158,7 +158,7 @@ int					GameState::update(void)
 	this->_grid[this->_snake.front()[0]][this->_snake.front()[1]] = 2;
 	if (next[0] != this->_food[0] || next[1] != this->_food[1])
 	{
-		this->_grid[this->_snake.back()[0]][this->_snake.back()[1]] = 2;
+		this->_grid[this->_snake.back()[0]][this->_snake.back()[1]] = 0;
 		this->_snake.pop_back();
 	}
 	else
