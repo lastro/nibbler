@@ -6,7 +6,7 @@
 //   By: tlepetit <tlepetit@student.42.fr>          +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/03/07 16:22:30 by tlepetit          #+#    #+#             //
-//   Updated: 2015/03/09 17:19:07 by tlepetit         ###   ########.fr       //
+//   Updated: 2015/03/10 17:37:22 by tlepetit         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -23,16 +23,16 @@ GameState::GameState(void): _x(50), _y(50), _dir(UP)
 	this->_snake = std::list<std::array<int, 2> >(4, std::array<int, 2>());
 	std::list<std::array<int, 2> >::iterator it = this->_snake.begin();
 	(*it)[0] = 25;
+	(*it)[1] = 23;
+	it++;
+	(*it)[0] = 25;
+	(*it)[1] = 24;
+	it++;
+	(*it)[0] = 25;
 	(*it)[1] = 25;
 	it++;
 	(*it)[0] = 25;
 	(*it)[1] = 26;
-	it++;
-	(*it)[0] = 25;
-	(*it)[1] = 27;
-	it++;
-	(*it)[0] = 25;
-	(*it)[1] = 28;
 	this->_food = std::array<int, 2>();
 	this->createFood();
 }
@@ -48,16 +48,16 @@ GameState::GameState(int x, int y): _x(x), _y(y), _dir(UP)
 	this->_snake = std::list<std::array<int, 2> >(4, std::array<int, 2>());
 	std::list<std::array<int, 2> >::iterator it = this->_snake.begin();
 	(*it)[0] = x/2;
+	(*it)[1] = y/2 - 2;
+	it++;
+	(*it)[0] = x/2;
+	(*it)[1] = y/2 - 1;
+	it++;
+	(*it)[0] = x/2;
 	(*it)[1] = y/2;
 	it++;
 	(*it)[0] = x/2;
 	(*it)[1] = y/2 + 1;
-	it++;
-	(*it)[0] = x/2;
-	(*it)[1] = y/2 + 2;
-	it++;
-	(*it)[0] = x/2;
-	(*it)[1] = y/2 + 3;
 	this->_food = std::array<int, 2>();
 	this->createFood();
 }
@@ -114,7 +114,7 @@ void				GameState::createFood(void)
 	int		i = 0;
 	int		j = 0;
 
-	while (this->_grid[i][j] == 0)
+	while (this->_grid[i][j] != 0)
 	{
 		i++;
 		if (i >= this->_x)
@@ -151,7 +151,7 @@ int					GameState::update(void)
 		next[1]++;
 	if (this->_dir == LEFT)
 		next[0]--;
-	if (next[0] < 0 || next[0] >= this->_x || next[1] < 0 || next[1] >= this->_y || this->_grid[next[0]][next[1]] == 1 || next[1] >= this->_y || this->_grid[next[0]][next[1]] == 2)
+	if (next[0] < 0 || next[0] >= this->_x || next[1] < 0 || next[1] >= this->_y || this->_grid[next[0]][next[1]] == 1 || this->_grid[next[0]][next[1]] == 2)
 		return (1);
 	this->_grid[this->_snake.front()[0]][this->_snake.front()[1]] = 1;
 	this->_snake.push_front(next);
