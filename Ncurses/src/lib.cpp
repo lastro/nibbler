@@ -6,7 +6,7 @@
 //   By: gmangin <gaelle.mangin@hotmail.fr>                                   //
 //                                                                            //
 //   Created: 2015/03/03 16:52:42 by gmangin                                  //
-//   Updated: 2015/03/10 02:58:30 by gmangin                                  //
+//   Updated: 2015/03/10 18:09:18 by gmangin                                  //
 //                                                                            //
 // ************************************************************************** //
 
@@ -23,6 +23,7 @@ extern "C" void	display(std::vector<std::vector<int> > grid, int x, int y)
 
 	window.test();
 	window.display();
+	window.input();
 
 	std::cout << "the x registered is " << window.getX();
 	std::cout << " and the y registered is " << window.getY() << std::endl;

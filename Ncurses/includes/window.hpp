@@ -6,13 +6,16 @@
 //   By: gmangin <gaelle.mangin@hotmail.fr>                                   //
 //                                                                            //
 //   Created: 2015/03/02 12:39:27 by gmangin                                  //
-//   Updated: 2015/03/10 02:56:33 by gmangin                                  //
+//   Updated: 2015/03/10 17:12:57 by gmangin                                  //
 //                                                                            //
 // ************************************************************************** //
 
 #ifndef		WINDOW_HPP
 # define	WINDOW_HPP
+
 # include	<vector>
+# include	<ncurses.h>
+# include	<curses.h>
 
 class		Window
 {
@@ -29,11 +32,13 @@ public:
 	void	setY(int);
 	void	test(void);
 	void	display(void);
+	int		input(void);
 	
 private:
 	Window(void);
 	int	_x;
 	int	_y;
+    WINDOW  *_win;
 	std::vector<std::vector<int> > _grid;
 };
 

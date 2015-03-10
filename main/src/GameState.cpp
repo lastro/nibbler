@@ -6,7 +6,7 @@
 //   By: tlepetit <tlepetit@student.42.fr>          +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/03/07 16:22:30 by tlepetit          #+#    #+#             //
-//   Updated: 2015/03/10 18:02:18 by tlepetit         ###   ########.fr       //
+//   Updated: 2015/03/10 19:26:53 by tlepetit         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -101,7 +101,7 @@ std::array<int, 2>		GameState::getFood(void) const
 	return (this->_food);
 }
 
-void				GameState::setDir(dir & dir)
+void				GameState::setDir(dir dir)
 {
 	this->_dir = dir;
 }
