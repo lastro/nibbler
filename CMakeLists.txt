@@ -7,7 +7,15 @@ set(Qt_USE_STATIC_LIBS OFF)
 set(OpenGL_USE_STATIC_LIBS OFF)
 
 
-find_package(OpenGL REQUIRED)
+find_package(
+		
+		OpenGL REQUIRED
+)
+
+find_package(
+
+        Qt4 REQUIRED
+)
 
 file(
 
@@ -29,12 +37,17 @@ file(
         main/includes/*
 )
 
+INCLUDE(${QT_USE_FILE})
+ADD_DEFINITIONS(${QT_DEFINITIONS})
+QT4_WRAP_CPP(Qt_HEADERS_MOC ${headers})
+
 add_executable(
 
 		nibbler
 
 		${sources}
 		${headers}
+		${Qt_HEADERS_MOC}
 )
 
 
