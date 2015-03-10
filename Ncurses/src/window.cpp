@@ -6,14 +6,12 @@
 //   By: gmangin <gaelle.mangin@hotmail.fr>                                   //
 //                                                                            //
 //   Created: 2015/03/02 17:09:43 by gmangin                                  //
-//   Updated: 2015/03/10 03:35:07 by gmangin                                  //
+//   Updated: 2015/03/10 18:08:45 by gmangin                                  //
 //                                                                            //
 // ************************************************************************** //
 
 #include	"../includes/window.hpp"
 #include	<iostream>
-#include	<ncurses.h>
-#include	<curses.h>
 
 Window::Window(std::vector<std::vector<int> > grid, int x, int y):_x(x), _y(y), _grid(grid)
 {
@@ -80,33 +78,43 @@ void	Window::test(void)
 
 void	Window::display(void)
 {
-	int ch;
-	int x = this->_x + 2;
-	int y = this->_y + 2;
+	int x = this->_x + 1;
+	int y = this->_y + 1;
+
 	std::cout << "display1" << std::endl;
 	initscr();/* Start curses mode   */
 	cbreak();
 	keypad(stdscr, true);
-//	start_color();
-	WINDOW	*win;
-	win = newwin(x, y, 0, 0);
-	refresh();/* Print it on to the real screen */
-	mvaddch(0,0, '+');
-	mvaddch(x,0, '+');
-	mvaddch(0,y, '+');
-	mvaddch(x,y, '+');
-    for (int i = 1; i < y - 1; ++i)
+	this->_win = newwin(x, y, 0, 0);
+	refresh();
+
+    for (int i = 0; i <= y; i++)
     {
-        for (int j = 1; j < x - 1; j++)
+        for (int j = 0; j <= x; j++)
         {
-			mvaddch(j,i,'o');			
+			if ((i == 0 && j != 0 && j != x) || (i == y && j != 0 && j != x))
+				mvaddch(j,i,'#');
+			else if ((j == 0 && i != 0 && i != y) || (j == x && i != 0 && i != y))
+				mvaddch(j,i,'#');
+			else if (i == y || i == 0 || j == 0 || j == x)
+				mvaddch(j,i,'#');
+			else if (this->_grid[i - 1][j - 1] == 2)
+				mvaddch(j,i,'@');
+			else if (this->_grid[i - 1][j - 1] == 1)
+				mvaddch(j,i,'o');
+			else if (this->_grid[i - 1][j - 1] == 3)
+				mvaddch(j,i,'x');
         }
 	}
-	init_pair(1, COLOR_RED, COLOR_BLACK);
-	attron(COLOR_PAIR(1));
-	mvprintw(x + 1, y + 1, "Hello World !!!");/* Print Hello World  */
-	attroff(COLOR_PAIR(1));
-	refresh();/* Print it on to the real screen */
+	refresh();
+	getch();
+	std::cout << "display2" << std::endl;
+}
+
+int		Window::input(void)
+{
+	int ch;
+
 	while ((ch = getch()) != KEY_LEFT)/* Wait for user input */
 	{
 		switch (ch)
@@ -126,5 +134,4 @@ void	Window::display(void)
 		}
 	}
 	endwin();
-	std::cout << "display2" << std::endl;
 }
