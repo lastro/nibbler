@@ -1,24 +1,24 @@
 // ************************************************************************** //
 //                                                                            //
 //                                                        :::      ::::::::   //
-//   ALib.hpp                                           :+:      :+:    :+:   //
+//   ILib.hpp                                           :+:      :+:    :+:   //
 //                                                    +:+ +:+         +:+     //
 //   By: rnicolas <rnicolas@student.42.fr>          +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/03/10 19:43:13 by rnicolas          #+#    #+#             //
-//   Updated: 2015/03/10 19:46:56 by rnicolas         ###   ########.fr       //
+//   Updated: 2015/03/11 17:52:54 by rnicolas         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
-#ifndef ALIB_HPP
-# define ALIB_HPP
+#ifndef ILIB_HPP
+# define ILIB_HPP
 
 #include "GameState.hpp"
 
-class ALib
+class ILib
 {
 public:
-	virtual ~AFoo(void) {}
+	virtual ~ILib(void) {}
 
 	virtual void	display(GameState game) = 0;
 	virtual int		input(void) = 0;
