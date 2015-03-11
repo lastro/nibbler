@@ -6,7 +6,7 @@
 //   By: tlepetit <tlepetit@student.42.fr>          +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/03/09 14:55:12 by tlepetit          #+#    #+#             //
-//   Updated: 2015/03/10 20:01:41 by tlepetit         ###   ########.fr       //
+//   Updated: 2015/03/11 19:38:50 by tlepetit         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -51,7 +51,7 @@ SDLLib &	SDLLib::operator=(SDLLib const & rhs)
 	return (*this);
 }
 
-extern "C" SDLLib	*init(GameState const & game)
+extern "C" ILib		*init(int x, int y)
 {
 	SDLLib	*lib = new SDLLib;
 
@@ -61,7 +61,7 @@ extern "C" SDLLib	*init(GameState const & game)
 		return (NULL);
 	}
 	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1");
-	lib->setWindow(SDL_CreateWindow("nibbler", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 10 * game.getX(), 10 * game.getY(), SDL_WINDOW_SHOWN));
+	lib->setWindow(SDL_CreateWindow("nibbler", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 10 * x, 10 * y, SDL_WINDOW_SHOWN));
 	if (lib->getWindow() == NULL)
 	{
 		std::cout << "erreur de creation de fenetre SDL: " << SDL_GetError() << std::endl;
@@ -86,13 +86,15 @@ extern "C" SDLLib	*init(GameState const & game)
 	return (lib);
 }
 
-extern "C" void		close(SDLLib *lib)
+extern "C" void		close(ILib *lib)
 {
-	SDL_DestroyRenderer(lib->getRenderer());
-	SDL_DestroyWindow(lib->getWindow());
+	SDLLib		*sdllib = dynamic_cast<SDLLib *>(lib);
+
+	SDL_DestroyRenderer(sdllib->getRenderer());
+	SDL_DestroyWindow(sdllib->getWindow());
 	IMG_Quit();
 	SDL_Quit();
-	delete (lib);
+	delete (sdllib);
 }
 
 int			SDLLib::input(void)
@@ -135,7 +137,28 @@ int			SDLLib::input(void)
 	return (flag);
 }
 
-void		SDLLib::display(GameState const & game)
+void		SDLLib::display(int x, int y, std::vector<std::vector<int> > grid)
 {
-	(void)game;
+	SDL_Rect	piece = {0, 0, 10, 10};
+	int i;
+	int j;
+
+	SDL_SetRenderDrawColor(this->_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
+	SDL_RenderClear(this->_renderer);
+	for (i = 0; i < x; i++)
+	{
+		for (j = 0; i < y; j++)
+		{
+			piece.x = 10 * i;
+			piece.y = 10 * j;
+			if (grid[i][j] == 1)
+				SDL_SetRenderDrawColor(this->_renderer, 0x00, 0x00, 0x00, 0xFF);
+			if (grid[i][j] == 2)
+				SDL_SetRenderDrawColor(this->_renderer, 0x00, 0x00, 0xFF, 0xFF);
+			if (grid[i][j] == 3)
+				SDL_SetRenderDrawColor(this->_renderer, 0x00, 0xFF, 0x00, 0xFF);
+			SDL_RenderFillRect(this->_renderer, &piece);
+		}
+	}
+	SDL_RenderPresent(this->_renderer);
 }

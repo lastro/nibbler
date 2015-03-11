@@ -6,7 +6,7 @@
 //   By: tlepetit <tlepetit@student.42.fr>          +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/03/09 14:55:48 by tlepetit          #+#    #+#             //
-//   Updated: 2015/03/10 20:02:27 by tlepetit         ###   ########.fr       //
+//   Updated: 2015/03/11 19:41:57 by tlepetit         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -14,11 +14,13 @@
 # define SDL_HPP
 
 # include <SDL.h>
-# include "GameState.hpp"
 # include <iostream>
 # include <SDL_image.h>
+# include "ILib.hpp"
+# include <vector>
+# include "GameState.hpp"
 
-class	SDLLib
+class	SDLLib: public ILib
 {
 public:
 	SDLLib(void);
@@ -31,7 +33,7 @@ public:
 	SDL_Renderer	*getRenderer(void) const;
 	void		setWindow(SDL_Window *window);
 	void		setRenderer(SDL_Renderer *renderer);
-	void		display(GameState const & game);
+	void		display(int x, int y, std::vector<std::vector<int> > grid);
 
 private:
 	SDL_Window	*_window;

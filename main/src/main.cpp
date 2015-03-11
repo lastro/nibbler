@@ -6,7 +6,7 @@
 //   By: gmangin <gaelle.mangin@hotmail.fr>                                   //
 //                                                                            //
 //   Created: 2015/03/02 12:39:27 by gmangin                                  //
-//   Updated: 2015/03/09 17:20:47 by tlepetit         ###   ########.fr       //
+//   Updated: 2015/03/11 19:23:50 by tlepetit         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -16,8 +16,10 @@
 #include	<signal.h>
 #include	<iostream>
 
+int		play(GameState & game, Lib & lib);
+
 // function qui check les options mis en argument
-void	check_arg(int argc, char **argv, GameState **game)
+GameState	*check_arg(int argc, char **argv)
 {
 	if (argc != 1 && argc != 3)
 		throw std::string("usage: snake [width] [height]");
@@ -30,55 +32,16 @@ void	check_arg(int argc, char **argv, GameState **game)
             else
 				throw std::string("usage: the minimum of the width and the height is 10 ");
 		}
-		*game = new GameState(std::atoi(argv[1]), std::atoi(argv[2]));
-		std::cout << "the width is " << (*game)->getX();
-		std::cout << " and the height is " << (*game)->getY() << std::endl;
+		std::cout << "the width is " << std::atoi(argv[1]) << std::endl;
+		std::cout << " and the height is " << std::atoi(argv[2]) << std::endl;
+		return (new GameState(std::atoi(argv[1]), std::atoi(argv[2])));
 	}
 	else
-		*game = new GameState(10, 10);
-}
-
-void	play(GameState *game, Lib *lib)
-{
-	// a ameliorer quand on controlera bien QT, OpenGl et le 3e !
-	// on pourra mettre en place le temps ... :)
-	std::cout << "Rules : " << std::endl;
-	std::cout << " - Play with UP RIGHT LEFT DOWN " << std::endl;
-	std::cout << " - Escape to quit" << std::endl;
-//	while (1)
-//	{
-/*	lib->move();
-	    if (!(game->get_life()))
-		{
-			lib->gameOver();
-			return;
-			}*/
-
-	//thomas notre script du rush00 c++
-/*        duration = usecClock(begin, end);
-        if (1000 > duration)
-		usleep(1000 - duration);*/
-//	}
-}
-
-// le jeu est lance, on place les pions et on les affiches dans les diff lib.
-void    start_game(GameState *game, Lib *lib)
-{
-	try
-	{
-		lib->window(game->getGrid(), game->getX(), game->getY());
-	}
-	catch(std::string const& chaine)
-	{
-		throw std::string(chaine);
-	}
-	game->display();
-	play(game, lib);
+		return (new GameState(10, 10));
 }
 
 void	exit_game(Lib *lib, GameState *game)
 {
-	lib->gameOver();
 	delete game;
 	delete lib;
 }
@@ -92,9 +55,9 @@ int		main(int argc, char **argv)
 	srand(static_cast<unsigned int>(time( NULL )));
 	try
 	{
-		check_arg(argc, argv, &game);
-		lib = new Lib();
-		start_game(game, lib);
+		game = check_arg(argc, argv);
+		lib = new Lib(*game);
+		play(*game, *lib);
 	}
 	catch(std::string const& chaine)
 	{

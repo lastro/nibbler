@@ -6,24 +6,31 @@
 //   By: gmangin <gmangin@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/03/04 13:45:04 by gmangin           #+#    #+#             //
-//   Updated: 2015/03/10 02:40:44 by gmangin                                  //
+//   Updated: 2015/03/11 20:00:15 by tlepetit         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
 #include	"../includes/Lib.hpp"
-#include    <dlfcn.h>
 #include    <iostream>
+#include <dlfcn.h>
 
-const char      graph[3][20] = { "./ncurses.so", "./opengl.so", "./autre.so" };
+const char      Lib::libs[3][20] = { "./ncurses.dylib", "SDL.dylib", "./SFML.dylib" };
 
-Lib::Lib(void) : _current(0)
+Lib::Lib(void)
 {
-	std::cout << "START LIB : " << graph[this->_current]  << std::endl;
+	this->_current = none;
+	std::cout << "START LIB : " << libs[this->_current]  << std::endl;
+}
+
+Lib::Lib(GameState const & game)
+{
+	std::cout << "START LIB : " << "SDL" << std::endl;
+	this->loadLib(SDL, game);
 }
 
 Lib::~Lib(void)
 {
-	std::cout << "END LIB : " << graph[this->_current]  << std::endl;
+	std::cout << "END LIB : " << libs[this->_current]  << std::endl;
 }
 
 Lib::Lib(Lib const & src)
@@ -37,48 +44,41 @@ Lib &	Lib::operator=(Lib const & rhs)
 	return *this;
 }
 
-// function generique pour les open dl (lib static)
-void *  error_dl(const char * lib)
+int		Lib::getInput(void)
 {
-    void    *hand;
-
-    hand = dlopen(lib, RTLD_NOW);
-    if (hand == NULL)
-        throw std::string(dlerror());
-	return hand;
+	return (this->_lib->input());
 }
 
-void	Lib::gameOver(void)
+void	Lib::display(GameState const & game)
 {
+	this->_lib->display(game.getX(), game.getY(), game.getGrid());
 }
 
-void    Lib::window(std::vector<std::vector<int> > grid, int x, int y)
+void	Lib::loadLib(id myid, GameState const & game)
 {
-    void    *hand;
-    void    (*f)(std::vector<std::vector<int> >, int, int);
+	ILib	*(*create_lib)(int, int);
 
-   try
-   {
-       hand = error_dl(graph[this->_current]);
-   }
-   catch(std::string const& chaine)
-   {
-       throw std::string(chaine);
-   }
-
-   f = reinterpret_cast<void (*)(std::vector<std::vector<int> >, int, int)>(dlsym(hand, "display"));
-   f(grid, x, y);
-   dlclose(hand);
+	std::cout << libs[myid] << std::endl;
+	this->_hand = dlopen(libs[myid], RTLD_NOW);
+	if (this->_hand == 0)
+	{
+		throw (Lib::loadLibException());
+	}
+	this->_current = myid;
+	create_lib = reinterpret_cast<ILib *(*)(int, int)>(dlsym(this->_hand, "init"));
+	if (create_lib == NULL)
+		throw (Lib::loadLibException());
+	this->_lib = create_lib(game.getX(), game.getY());
 }
 
-void	Lib::chooseLib(int i)
+void	Lib::unloadLib(void)
 {
-	std::cout << "CHANGE LIB from " << graph[this->_current];
-	this->_current = i;
-	std::cout << " to : " << graph[this->_current]  << std::endl;
-}
+	void	(*delete_lib)(ILib *);
 
-void	Lib::getInput(void)
-{
-//recup 
+	delete_lib = reinterpret_cast<void (*)(ILib *)>(dlsym(this->_hand, "close"));
+	if (delete_lib == NULL)
+		throw (Lib::loadLibException());
+	delete_lib(this->_lib);
+	this->_lib = NULL;
+	this->_current = none;
 }
