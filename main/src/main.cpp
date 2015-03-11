@@ -6,7 +6,7 @@
 //   By: gmangin <gaelle.mangin@hotmail.fr>                                   //
 //                                                                            //
 //   Created: 2015/03/02 12:39:27 by gmangin                                  //
-//   Updated: 2015/03/11 19:23:50 by tlepetit         ###   ########.fr       //
+//   Updated: 2015/03/11 20:46:58 by tlepetit         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -37,7 +37,7 @@ GameState	*check_arg(int argc, char **argv)
 		return (new GameState(std::atoi(argv[1]), std::atoi(argv[2])));
 	}
 	else
-		return (new GameState(10, 10));
+		return (new GameState());
 }
 
 void	exit_game(Lib *lib, GameState *game)

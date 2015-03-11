@@ -6,7 +6,7 @@
 //   By: tlepetit <tlepetit@student.42.fr>          +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/03/07 16:22:30 by tlepetit          #+#    #+#             //
-//   Updated: 2015/03/11 18:06:36 by tlepetit         ###   ########.fr       //
+//   Updated: 2015/03/11 20:46:06 by tlepetit         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -104,6 +104,11 @@ std::vector<std::vector<int> >	GameState::getGrid(void) const
 std::array<int, 2>		GameState::getFood(void) const
 {
 	return (this->_food);
+}
+
+GameState::dir			GameState::getDir(void) const
+{
+	return (this->_dir);
 }
 
 void				GameState::setDir(dir dir)

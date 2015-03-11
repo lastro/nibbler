@@ -6,7 +6,7 @@
 //   By: tlepetit <tlepetit@student.42.fr>          +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/03/09 14:55:12 by tlepetit          #+#    #+#             //
-//   Updated: 2015/03/11 19:38:50 by tlepetit         ###   ########.fr       //
+//   Updated: 2015/03/11 20:40:00 by tlepetit         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -106,30 +106,30 @@ int			SDLLib::input(void)
 	{
 		if (e.type == SDL_QUIT)
 			flag = flag | QUIT;
-		if (e.type == SDLK_DOWN)
+		if (e.type == SDL_KEYDOWN)
 		{
 			switch (e.key.keysym.sym)
 			{
 				case SDLK_UP:
-				flag = (flag & ~3) | KUP;
+				flag = (flag & ~0b111) | KUP;
 				break ;
 				case SDLK_RIGHT:
-				flag = (flag & ~3) | KRIGHT;
+				flag = (flag & ~0b111) | KRIGHT;
 				break ;
 				case SDLK_DOWN:
-				flag = (flag & ~3) | KDOWN;
+				flag = (flag & ~0b111) | KDOWN;
 				break ;
 				case SDLK_LEFT:
-				flag = (flag & ~3) | KLEFT;
+				flag = (flag & ~0b111) | KLEFT;
 				break ;
 				case SDLK_F1:
-				flag = (flag & ~12) | KF1;
+				flag = (flag & ~0b11000) | KF1;
 				break ;
 				case SDLK_F2:
-				flag = (flag & ~12) | KF2;
+				flag = (flag & ~0b11000) | KF2;
 				break ;
 				case SDLK_F3:
-				flag = (flag & ~12) | KF3;
+				flag = (flag & ~0b11000) | KF3;
 				break ;
 			} 
 		}
@@ -143,20 +143,22 @@ void		SDLLib::display(int x, int y, std::vector<std::vector<int> > grid)
 	int i;
 	int j;
 
-	SDL_SetRenderDrawColor(this->_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
+	SDL_SetRenderDrawColor(this->_renderer, 0x00, 0x00, 0x00, 0xFF);
 	SDL_RenderClear(this->_renderer);
 	for (i = 0; i < x; i++)
 	{
-		for (j = 0; i < y; j++)
+		for (j = 0; j < y; j++)
 		{
 			piece.x = 10 * i;
 			piece.y = 10 * j;
 			if (grid[i][j] == 1)
-				SDL_SetRenderDrawColor(this->_renderer, 0x00, 0x00, 0x00, 0xFF);
+				SDL_SetRenderDrawColor(this->_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
 			if (grid[i][j] == 2)
 				SDL_SetRenderDrawColor(this->_renderer, 0x00, 0x00, 0xFF, 0xFF);
 			if (grid[i][j] == 3)
 				SDL_SetRenderDrawColor(this->_renderer, 0x00, 0xFF, 0x00, 0xFF);
+			if (grid[i][j] == 0)
+				SDL_SetRenderDrawColor(this->_renderer, 0x00, 0x00, 0x00, 0xFF);
 			SDL_RenderFillRect(this->_renderer, &piece);
 		}
 	}

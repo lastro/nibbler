@@ -6,7 +6,7 @@
 //   By: tlepetit <tlepetit@student.42.fr>          +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/03/07 16:23:11 by tlepetit          #+#    #+#             //
-//   Updated: 2015/03/11 18:06:59 by tlepetit         ###   ########.fr       //
+//   Updated: 2015/03/11 20:44:46 by tlepetit         ###   ########.fr       //
 //   Updated: 2015/03/10 18:04:35 by rnicolas         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
@@ -18,14 +18,14 @@
 # include <vector>
 # include <array>
 # include <stdlib.h>
-# define KUP	0b0
-# define KRIGHT	0b1
-# define KDOWN	0b10
-# define KLEFT	0b11
-# define KF1	0b0100
-# define KF2	0b1000
-# define KF3	0b1100
-# define QUIT	0b10000
+# define KUP	0b1
+# define KRIGHT	0b10
+# define KDOWN	0b11
+# define KLEFT	0b100
+# define KF1	0b01000
+# define KF2	0b10000
+# define KF3	0b11000
+# define QUIT	0b100000
 
 class	GameState
 {
@@ -41,6 +41,7 @@ public:
 	int		getId(void) const;
 	std::vector<std::vector<int> >		getGrid(void) const;
 	std::array<int, 2>		getFood(void) const;
+	dir		getDir(void) const;
 	void	setDir(dir dir);
 	void	setId(int id);
 	void	createFood(void);

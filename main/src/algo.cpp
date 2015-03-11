@@ -6,7 +6,7 @@
 //   By: rnicolas <rnicolas@student.42.fr>          +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/03/10 17:07:21 by rnicolas          #+#    #+#             //
-//   Updated: 2015/03/11 19:11:28 by tlepetit         ###   ########.fr       //
+//   Updated: 2015/03/11 20:47:30 by tlepetit         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -21,7 +21,7 @@
 // de la methode void display(Gamestate) qui affiche le plateau
 // et la methode int id(void) qui indique dans quelle lib on est actuellement.
 
-static void	treat_event(GameState & game, Lib & lib)
+static void	treat_event(GameState  & game, Lib & lib)
 {
 	int	event;
 
@@ -31,25 +31,25 @@ static void	treat_event(GameState & game, Lib & lib)
 		lib.unloadLib();
 		exit(0);
 	}
-	if ((event & 0b11) == KUP)
+	if ((event & 0b111) == KUP && game.getDir() != GameState::DOWN)
 		game.setDir(GameState::UP);
-	else if ((event & 0b11) == KRIGHT)
+	else if ((event & 0b111) == KRIGHT && game.getDir() != GameState::LEFT)
 		game.setDir(GameState::RIGHT);
-	else if ((event & 0b11) == KDOWN)
+	else if ((event & 0b111) == KDOWN && game.getDir() != GameState::UP)
 		game.setDir(GameState::DOWN);
-	else if ((event & 0b11) == KLEFT)
+	else if ((event & 0b111) == KLEFT && game.getDir() != GameState::RIGHT)
 		game.setDir(GameState::LEFT);
-	if ((event & 0b1100) == KF1 && game.getId() != Lib::ncurses)
+	if ((event & 0b11000) == KF1 && game.getId() != Lib::ncurses)
 	{
 		lib.unloadLib();
 		lib.loadLib(Lib::ncurses, game);
 	}
-	else if ((event & 0b1100) == KF2 &&game.getId() != Lib::SDL)
+	else if ((event & 0b11000) == KF2 &&game.getId() != Lib::SDL)
 	{
 		lib.unloadLib();
 		lib.loadLib(Lib::SDL, game);
 	}
-	else if ((event & 0b1100) == KF3 && game.getId() != Lib::SFML)
+	else if ((event & 0b11000) == KF3 && game.getId() != Lib::SFML)
 	{
 		lib.unloadLib();
 		lib.loadLib(Lib::SFML, game);
