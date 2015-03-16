@@ -6,14 +6,14 @@
 //   By: tlepetit <tlepetit@student.42.fr>          +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/03/07 16:22:30 by tlepetit          #+#    #+#             //
-//   Updated: 2015/03/11 20:46:06 by tlepetit         ###   ########.fr       //
+//   Updated: 2015/03/16 16:03:10 by tlepetit         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
 #include	"../includes/GameState.hpp"
 #include	<iostream>
 
-GameState::GameState(void): _x(50), _y(50), _dir(UP)
+GameState::GameState(void): _x(50), _y(50), _dir(UP), _lastDir(UP)
 {
 	this->_grid = std::vector<std::vector<int> >(50, std::vector<int>(50, 0));
 	this->_grid[25][23] = 2;
@@ -38,7 +38,7 @@ GameState::GameState(void): _x(50), _y(50), _dir(UP)
 }
 
 
-GameState::GameState(int x, int y): _x(x), _y(y), _dir(UP)
+GameState::GameState(int x, int y): _x(x), _y(y), _dir(UP), _lastDir(UP)
 {
 	this->_grid = std::vector<std::vector<int> >(x, std::vector<int>(y, 0));
 	this->_grid[x/2][y/2 - 2] = 2;
@@ -78,6 +78,7 @@ GameState & GameState::operator=(GameState const & rhs)
 	this->_snake = rhs._snake;
 	this->_grid = rhs._grid;
 	this->_dir = rhs._dir;
+	this->_lastDir = rhs._lastDir;
 	return (*this);
 }
 
@@ -114,6 +115,16 @@ GameState::dir			GameState::getDir(void) const
 void				GameState::setDir(dir dir)
 {
 	this->_dir = dir;
+}
+
+GameState::dir			GameState::getLastDir(void) const
+{
+	return (this->_lastDir);
+}
+
+void				GameState::setLastDir(dir lastDir)
+{
+	this->_lastDir = lastDir;
 }
 
 void				GameState::setId(int id)
@@ -182,6 +193,7 @@ int					GameState::update(void)
 			return (2);
 		this->createFood();
 	}
+	this->_lastDir = this->_dir;
 	return(0);
 }
 

@@ -6,7 +6,7 @@
 //   By: rnicolas <rnicolas@student.42.fr>          +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/03/10 17:07:21 by rnicolas          #+#    #+#             //
-//   Updated: 2015/03/11 20:47:30 by tlepetit         ###   ########.fr       //
+//   Updated: 2015/03/16 16:02:12 by tlepetit         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -31,13 +31,13 @@ static void	treat_event(GameState  & game, Lib & lib)
 		lib.unloadLib();
 		exit(0);
 	}
-	if ((event & 0b111) == KUP && game.getDir() != GameState::DOWN)
+	if ((event & 0b111) == KUP && game.getLastDir() != GameState::DOWN)
 		game.setDir(GameState::UP);
-	else if ((event & 0b111) == KRIGHT && game.getDir() != GameState::LEFT)
+	else if ((event & 0b111) == KRIGHT && game.getLastDir() != GameState::LEFT)
 		game.setDir(GameState::RIGHT);
-	else if ((event & 0b111) == KDOWN && game.getDir() != GameState::UP)
+	else if ((event & 0b111) == KDOWN && game.getLastDir() != GameState::UP)
 		game.setDir(GameState::DOWN);
-	else if ((event & 0b111) == KLEFT && game.getDir() != GameState::RIGHT)
+	else if ((event & 0b111) == KLEFT && game.getLastDir() != GameState::RIGHT)
 		game.setDir(GameState::LEFT);
 	if ((event & 0b11000) == KF1 && game.getId() != Lib::ncurses)
 	{

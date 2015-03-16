@@ -6,7 +6,7 @@
 //   By: tlepetit <tlepetit@student.42.fr>          +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/03/07 16:23:11 by tlepetit          #+#    #+#             //
-//   Updated: 2015/03/11 20:44:46 by tlepetit         ###   ########.fr       //
+//   Updated: 2015/03/16 16:04:00 by tlepetit         ###   ########.fr       //
 //   Updated: 2015/03/10 18:04:35 by rnicolas         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
@@ -43,6 +43,8 @@ public:
 	std::array<int, 2>		getFood(void) const;
 	dir		getDir(void) const;
 	void	setDir(dir dir);
+	dir		getLastDir(void) const;
+	void	setLastDir(dir dir);
 	void	setId(int id);
 	void	createFood(void);
 	int		update(void);
@@ -54,6 +56,7 @@ private:
 	std::list<std::array<int, 2> >		_snake;
 	std::vector<std::vector<int> >	_grid;
 	dir		_dir;
+	dir		_lastDir;
 	int		_id;
 	std::array<int, 2>	_food;
 };
