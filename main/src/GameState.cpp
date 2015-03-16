@@ -6,7 +6,7 @@
 //   By: tlepetit <tlepetit@student.42.fr>          +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/03/07 16:22:30 by tlepetit          #+#    #+#             //
-//   Updated: 2015/03/16 16:03:10 by tlepetit         ###   ########.fr       //
+//   Updated: 2015/03/16 19:31:24 by rnicolas         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -178,17 +178,21 @@ int					GameState::update(void)
 	if (this->_dir == LEFT)
 		next[0]--;
 	if (next[0] < 0 || next[0] >= this->_x || next[1] < 0 || next[1] >= this->_y || this->_grid[next[0]][next[1]] == 1 || this->_grid[next[0]][next[1]] == 2)
-		return (1);
+	{
+		if (!(this->_snake.back()[0] == next[0] && this->_snake.back()[1] ==next[1]))
+			  return (1);
+	}
 	this->_grid[this->_snake.front()[0]][this->_snake.front()[1]] = 1;
 	this->_snake.push_front(next);
-	this->_grid[this->_snake.front()[0]][this->_snake.front()[1]] = 2;
 	if (next[0] != this->_food[0] || next[1] != this->_food[1])
 	{
 		this->_grid[this->_snake.back()[0]][this->_snake.back()[1]] = 0;
 		this->_snake.pop_back();
+		this->_grid[this->_snake.front()[0]][this->_snake.front()[1]] = 2;
 	}
 	else
 	{
+		this->_grid[this->_snake.front()[0]][this->_snake.front()[1]] = 2;
 		if (this->_snake.size() == static_cast<unsigned long>(this->_x * this->_y))
 			return (2);
 		this->createFood();
