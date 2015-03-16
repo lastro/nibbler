@@ -6,7 +6,7 @@
 //   By: gmangin <gmangin@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/03/04 13:45:04 by gmangin           #+#    #+#             //
-//   Updated: 2015/03/16 18:42:50 by tlepetit         ###   ########.fr       //
+//   Updated: 2015/03/16 19:00:29 by tlepetit         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -19,18 +19,15 @@ const char      Lib::libs[3][20] = { "./ncurses.dylib", "SDL.dylib", "./SFML.dyl
 Lib::Lib(void)
 {
 	this->_current = none;
-	std::cout << "START LIB : " << libs[this->_current]  << std::endl;
 }
 
 Lib::Lib(GameState const & game)
 {
-	std::cout << "START LIB : " << "SDL" << std::endl;
-	this->loadLib(SDL, game);
+	this->loadLib(SFML, game);
 }
 
 Lib::~Lib(void)
 {
-	std::cout << "END LIB : " << libs[this->_current]  << std::endl;
 }
 
 Lib::Lib(Lib const & src)
@@ -63,7 +60,6 @@ void	Lib::loadLib(id myid, GameState const & game)
 {
 	ILib	*(*create_lib)(int, int);
 
-	std::cout << libs[myid] << std::endl;
 	this->_hand = dlopen(libs[myid], RTLD_NOW);
 	if (this->_hand == 0)
 	{
