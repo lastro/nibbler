@@ -6,7 +6,7 @@
 //   By: gmangin <gmangin@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/03/04 13:45:04 by gmangin           #+#    #+#             //
-//   Updated: 2015/03/11 19:23:35 by tlepetit         ###   ########.fr       //
+//   Updated: 2015/03/16 18:41:48 by tlepetit         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -32,6 +32,8 @@ public:
 	void	display(GameState const & game);
 
 	enum	id {none = -1, ncurses, SDL, SFML};
+
+	id		getCurrent(void) const;
 
 	void	loadLib(id myid, GameState const & game);
 	void	unloadLib(void);

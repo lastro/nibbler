@@ -6,7 +6,7 @@
 //   By: rnicolas <rnicolas@student.42.fr>          +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/03/10 17:07:21 by rnicolas          #+#    #+#             //
-//   Updated: 2015/03/16 16:02:12 by tlepetit         ###   ########.fr       //
+//   Updated: 2015/03/16 18:42:27 by tlepetit         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -39,17 +39,17 @@ static void	treat_event(GameState  & game, Lib & lib)
 		game.setDir(GameState::DOWN);
 	else if ((event & 0b111) == KLEFT && game.getLastDir() != GameState::RIGHT)
 		game.setDir(GameState::LEFT);
-	if ((event & 0b11000) == KF1 && game.getId() != Lib::ncurses)
+	if ((event & 0b11000) == KF1 && lib.getCurrent() != Lib::ncurses)
 	{
 		lib.unloadLib();
 		lib.loadLib(Lib::ncurses, game);
 	}
-	else if ((event & 0b11000) == KF2 &&game.getId() != Lib::SDL)
+	else if ((event & 0b11000) == KF2 &&lib.getCurrent() != Lib::SDL)
 	{
 		lib.unloadLib();
 		lib.loadLib(Lib::SDL, game);
 	}
-	else if ((event & 0b11000) == KF3 && game.getId() != Lib::SFML)
+	else if ((event & 0b11000) == KF3 && lib.getCurrent() != Lib::SFML)
 	{
 		lib.unloadLib();
 		lib.loadLib(Lib::SFML, game);

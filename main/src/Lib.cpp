@@ -6,7 +6,7 @@
 //   By: gmangin <gmangin@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/03/04 13:45:04 by gmangin           #+#    #+#             //
-//   Updated: 2015/03/11 20:00:15 by tlepetit         ###   ########.fr       //
+//   Updated: 2015/03/16 18:42:50 by tlepetit         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -42,6 +42,11 @@ Lib &	Lib::operator=(Lib const & rhs)
 {
   (void)rhs;
 	return *this;
+}
+
+Lib::id	Lib::getCurrent(void) const
+{
+	return (this->_current);
 }
 
 int		Lib::getInput(void)
