@@ -6,7 +6,7 @@
 //   By: rnicolas <rnicolas@student.42.fr>          +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/03/16 16:41:30 by rnicolas          #+#    #+#             //
-//   Updated: 2015/03/18 15:35:39 by rnicolas         ###   ########.fr       //
+//   Updated: 2015/03/18 15:58:48 by rnicolas         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -60,28 +60,30 @@ int		SFMLLib::input(void)
 		{
 			switch (e.key.code)
 			{
-				case sf::Keyboard::Up:
+			case sf::Keyboard::Up:
 				ret = (ret & ~0b111) | KUP;
 				break ;
-				case sf::Keyboard::Right:
+			case sf::Keyboard::Right:
 				ret = (ret & ~0b111) | KRIGHT;
 				break ;
-				case sf::Keyboard::Down:
+			case sf::Keyboard::Down:
 				ret = (ret & ~0b111) | KDOWN;
 				break ;
-				case sf::Keyboard::Left:
+			case sf::Keyboard::Left:
 				ret = (ret & ~0b111) | KLEFT;
 				break ;
-				case sf::Keyboard::F1:
+			case sf::Keyboard::F1:
 				ret = (ret & ~0b11000) | KF1;
 				break ;
-				case sf::Keyboard::F2:
+			case sf::Keyboard::F2:
 				ret = (ret & ~0b11000) | KF2;
 				break ;
-				case sf::Keyboard::F3:
+			case sf::Keyboard::F3:
 				ret = (ret & ~0b11000) | KF3;
 				break ;
-				default:
+			case sf::Keyboard::Escape:
+				ret = ret | QUIT;
+			default:
 				break ;
 			} 
 		}
