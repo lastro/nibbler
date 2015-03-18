@@ -6,7 +6,7 @@
 //   By: tlepetit <tlepetit@student.42.fr>          +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/03/07 16:23:11 by tlepetit          #+#    #+#             //
-//   Updated: 2015/03/16 16:04:00 by tlepetit         ###   ########.fr       //
+//   Updated: 2015/03/18 16:30:35 by tlepetit         ###   ########.fr       //
 //   Updated: 2015/03/10 18:04:35 by rnicolas         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
@@ -26,6 +26,7 @@
 # define KF2	0b10000
 # define KF3	0b11000
 # define QUIT	0b100000
+# define FRAME	16666
 
 class	GameState
 {
