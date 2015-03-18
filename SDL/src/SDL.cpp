@@ -6,7 +6,7 @@
 //   By: tlepetit <tlepetit@student.42.fr>          +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/03/09 14:55:12 by tlepetit          #+#    #+#             //
-//   Updated: 2015/03/11 20:40:00 by tlepetit         ###   ########.fr       //
+//   Updated: 2015/03/18 16:04:01 by tlepetit         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -130,6 +130,9 @@ int			SDLLib::input(void)
 				break ;
 				case SDLK_F3:
 				flag = (flag & ~0b11000) | KF3;
+				break ;
+				case SDLK_ESCAPE:
+				flag = flag | QUIT;
 				break ;
 			} 
 		}
