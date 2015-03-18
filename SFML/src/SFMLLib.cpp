@@ -6,7 +6,7 @@
 //   By: rnicolas <rnicolas@student.42.fr>          +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/03/16 16:41:30 by rnicolas          #+#    #+#             //
-//   Updated: 2015/03/16 18:30:03 by rnicolas         ###   ########.fr       //
+//   Updated: 2015/03/18 15:35:39 by rnicolas         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -14,7 +14,7 @@
 #include "SFMLLib.hpp"
 #include "Gamestate.hpp"
 
-SFMLLib::SFMLLib(int x, int y): _window(sf::VideoMode(10 * x, 10 * y), "nibbler")
+SFMLLib::SFMLLib(int x, int y): _window(sf::VideoMode(20 * x, 20 * y), "nibbler")
 {
 }
 
@@ -25,7 +25,7 @@ SFMLLib::~SFMLLib()
 void	SFMLLib::display(int x, int y, std::vector<std::vector<int> > grid)
 {
 	int					i, j;
-	sf::CircleShape		circle = sf::CircleShape(5, 50);
+	sf::CircleShape		circle = sf::CircleShape(10, 50);
 
 	this->_window.clear(sf::Color::Black);
 	for (i = 0;i < x;i++)
@@ -39,7 +39,7 @@ void	SFMLLib::display(int x, int y, std::vector<std::vector<int> > grid)
 			circle.setFillColor(sf::Color(255, 0, 0, 255));
 		if (grid[i][j] != 0)
 		{
-			circle.setPosition(10 * i, 10 * j);
+			circle.setPosition(20 * i, 20 * j);
 			this->_window.draw(circle);
 		}
 	}
