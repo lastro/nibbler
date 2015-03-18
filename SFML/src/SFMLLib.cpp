@@ -18,9 +18,20 @@ SFMLLib::SFMLLib(int x, int y): _window(sf::VideoMode(20 * x, 20 * y), "nibbler"
 {
 }
 
+SFMLLib::SFMLLib(SFMLLib const & ori): _window(sf::VideoMode(ori._window.getSize().x, ori._window.getSize().y), "nibbler")
+{
+}
+
 SFMLLib::~SFMLLib()
 {
 }
+
+SFMLLib&	SFMLLib::operator=(SFMLLib const & rhs)
+{
+	this->_window.create(sf::VideoMode(rhs._window.getSize().x, rhs._window.getSize().y), "nibbler");
+	return (*this);
+}
+
 
 void	SFMLLib::display(int x, int y, std::vector<std::vector<int> > grid)
 {

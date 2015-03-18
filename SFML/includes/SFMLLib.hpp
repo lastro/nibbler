@@ -27,7 +27,12 @@ public:
 	int		input(void);
 
 	void	closeWindow(void);
+
 private:
+	SFMLLib(void);
+	SFMLLib(SFMLLib const & ori);
+
+	SFMLLib&	operator=(SFMLLib const & rhs);
 
 	sf::RenderWindow	_window;
 };
