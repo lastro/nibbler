@@ -5,58 +5,45 @@
 #                                                     +:+ +:+         +:+      #
 #    By: rnicolas <rnicolas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2015/03/20 18:11:53 by rnicolas          #+#    #+#              #
-#    Updated: 2015/03/20 18:33:37 by rnicolas         ###   ########.fr        #
+#    Created: 2015/03/20 17:38:23 by rnicolas          #+#    #+#              #
+#    Updated: 2015/03/20 17:59:17 by rnicolas         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
-NAME = nibbler
+NAME = SFML.dylib
 
 CC = g++
 
 CFLAGS = -Wall -Wextra -Werror
 
-IFLAGS = -I includes
+IFLAGS = -I includes -I ../main/includes -I ~/.brew/Cellar/sfml/2.2/include
 
-LIBDIR = SFML SDL
-
-LIB = $(LIBDIR:%=%.dylib)
+LFLAGS = -L ~/.brew/Cellar/sfml/2.2/lib -lsfml-graphics -lsfml-window -lsfml-system
 
 SRCDIR = ./src/
 
 OBJDIR = ./obj/
 
-SRC =	Element.cpp\
-		GameState.cpp\
-		Lib.cpp\
-		algo.cpp\
-		main.cpp
+SRC = SFMLLib.cpp
 
 OBJ = $(SRC:%.cpp=%.o)
 
 OBJ_LIST = $(addprefix $(OBJDIR), $(OBJ))
 
-all: $(LIB) $(NAME)
+all: $(NAME)
 
 $(NAME): $(OBJ_LIST)
-	$(CC) -Wl,-rpath,$(shell pwd) -o $@ $(OBJ_LIST)
+	$(CC) -shared -o $@ $(OBJ_LIST) $(LFLAGS) -fPIC
 
 $(OBJDIR)%.o: $(SRCDIR)%.cpp
 	$(CC) -o $@ -c $< $(CFLAGS) $(IFLAGS)
 
-%.dylib: ../%
-	make -C $<
-	cp $</$@ .
-
 clean:
-	make -C ../SFML clean
-	make -C ../SDL clean
 	/bin/rm -fr $(OBJ_LIST)
 
 fclean: clean
-	rm -f $(LIB)
-	rm -f ../SFML/SFML.dylib
-	rm -f ../SDL/SDL.dylib
-	rm -f $(NAME)
+	/bin/rm -f $(NAME)
 
 re: fclean all
+
+.PHONY: all clean fclean re
